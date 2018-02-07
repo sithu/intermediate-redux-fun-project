@@ -55,6 +55,9 @@ class App extends Component {
           <input id="message" value={this.state.message} onChange={this.handleMessageChange} type="text"></input>
           <button onClick={this.handleSend}>send</button>
         </p>
+        <p>
+          <textarea></textarea>
+        </p>
       </div>
     );
   }
