@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import { login, hear, join, say } from './chat'
+import { login, hear, join, say } from './chat';
+import ChatWindow from './ChatWindow';
 
 class App extends Component {
   constructor(props) {
@@ -56,7 +57,7 @@ class App extends Component {
           <button onClick={this.handleSend}>send</button>
         </p>
         <p>
-          <textarea></textarea>
+          <ChatWindow messages={"foo"}></ChatWindow>
         </p>
       </div>
     );
