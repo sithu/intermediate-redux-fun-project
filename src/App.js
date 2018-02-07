@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import { login, hear, join, connect, say } from './chat'
+import { login, hear, join, say } from './chat'
 
 class App extends Component {
   constructor(props) {
@@ -15,12 +15,8 @@ class App extends Component {
   }
 
   handleClick() {
-    //this.conn = connect()
-
     login(this.state.name, this.state.name)
       .then(({ connection, user }) => {
-        console.log('user', user)
-        console.log('connection', connection)
         join(connection)
           .then(channel =>
             this.channel = channel
@@ -41,17 +37,22 @@ class App extends Component {
   handleMessageChange(event) {
     this.setState({ message: event.target.value });
   }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Welcome to Star Wars Chat</h1>
         </header>
-        <p className="App-intro">
-          <input value={this.state.name} onChange={this.handleChange} type="text"></input>
+        <p>
+          <label htmlFor="nickname">nickname </label>
+          <input id="nickname" value={this.state.name} onChange={this.handleChange} type="text" />
           <button onClick={this.handleClick}>login</button>
-          <input value={this.state.message} onChange={this.handleMessageChange} type="text"></input>
+        </p>
+        <p>
+          <label htmlFor="message">message </label>
+          <input id="message" value={this.state.message} onChange={this.handleMessageChange} type="text"></input>
           <button onClick={this.handleSend}>send</button>
         </p>
       </div>
