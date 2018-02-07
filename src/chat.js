@@ -1,21 +1,19 @@
 import SendBird from 'sendbird';
-//const sb = new SendBird({ 'appId': '6B64BB68-8779-4825-BD6E-FACF52834911' })
 
-export const connect = () => {
-  return new SendBird({ 'appId': '6B64BB68-8779-4825-BD6E-FACF52834911' })
-}
-
-export const login = (sb, user, nick) => {
+export const login = (user, nick) => {
+  const sb = SendBird({ 'appId': '6B64BB68-8779-4825-BD6E-FACF52834911' })
   return new Promise((resolve, reject) => {
     sb.connect(user, (user, error) => {
       if (error) {
-        reject('Login Failed.');
+        console.error(error)
+        reject('login failed')
       } else {
         sb.updateCurrentUserInfo(nick, null, (user, error) => {
           if (error) {
-            reject('Update User Failed.');
+            console.error(error)
+            reject('update user failed')
           } else {
-            resolve(user);
+            resolve({ connection: sb, user })
           }
         })
       }

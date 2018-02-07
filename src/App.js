@@ -15,17 +15,17 @@ class App extends Component {
   }
 
   handleClick() {
-    this.conn = connect()
+    //this.conn = connect()
 
-    login(this.conn, this.state.name, this.state.name)
-      .then(user => {
+    login(this.state.name, this.state.name)
+      .then(({ connection, user }) => {
         console.log('user', user)
-        join(this.conn)
+        console.log('connection', connection)
+        join(connection)
           .then(channel =>
             this.channel = channel
           )
-      }).then(() => {
-        hear(this.conn, (message, channel) => {
+        hear(connection, (message, channel) => {
           console.log(message, channel)
         })
       })
