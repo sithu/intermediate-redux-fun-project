@@ -21,7 +21,7 @@ class App extends Component {
           .then(channel =>
             this.channel = channel
           )
-        hear(connection, (message, channel) => {
+        hear(connection, (channel, message) => {
           console.log(message, channel)
         })
       })
